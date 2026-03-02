@@ -1,0 +1,124 @@
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 93dvh;
+    animation: main-border-alert 2.5s both infinite;
+}
+
+.bi-journal-x{
+    font-size: 5rem;
+    color: #ff4d4d;
+}
+.header-error{
+    display: flex;
+    height: 120px;
+    width: auto;
+    justify-content: center;
+    align-items:center;
+    margin-top: 0.5rem;
+    contain: content;
+    animation: rightRevelate 2.5s ease-out;
+}
+.header-error > h1{
+    font-size: 5rem;
+    color: #ff4d4d;
+    align-content: start;
+    margin-top: 1rem;
+    height: 100%;
+}
+.error-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: center;
+    justify-content: center;
+}
+.main-error{
+    animation: leftRevelate 2.5s ease-out;
+}
+
+#route{
+    font-size: 1.5rem;
+    color: #ff4d4d;
+}
+.controls{
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.controls > button{
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    background-color: #c4c4c4;
+    color: #eee;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+    interpolate-size: allow-keywords;
+    transition: all 0.5s ease-in-out;
+    animation: topRevelate 2.5s ease-out;
+}
+
+.controls > button:hover{
+    background-color: #ff4d4d;
+    width: 120px;
+    border-radius: 999px;
+    border: 2px solid #ff4d4d;
+}
+
+.controls > button:hover > p{
+    display: inline;
+    width: auto;
+}
+
+.controls > button > p{
+    display: none;
+    width: 0;
+    transition: all 0.5s ease-in-out;
+    interpolate-size: allow-keywords;
+}
+
+
+@keyframes rightRevelate {
+    from{
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes leftRevelate {
+    from{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes main-border-alert {
+    from{
+        box-shadow: inset 0 0 50px 2px #ff4d4d;
+    }
+    to{
+         box-shadow:inset 0 0 10px 2px transparent;
+    }
+}
+@keyframes topRevelate {
+    from{
+        transform: translateY(200%);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
