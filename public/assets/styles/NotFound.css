@@ -62,6 +62,7 @@ main{
     interpolate-size: allow-keywords;
     transition: all 0.5s ease-in-out;
     animation: topRevelate 2.5s ease-out;
+    position:absolute;
 }
 
 .controls > button:hover{
@@ -69,11 +70,13 @@ main{
     width: 120px;
     border-radius: 999px;
     border: 2px solid #ff4d4d;
+    cursor: url('/assets/icons/Arrow-left.svg'), auto;
 }
 
 .controls > button:hover > p{
     display: inline;
     width: auto;
+    cursor: url('/assets/icons/Arrow-left.svg'), auto;
 }
 
 .controls > button > p{
@@ -81,6 +84,10 @@ main{
     width: 0;
     transition: all 0.5s ease-in-out;
     interpolate-size: allow-keywords;
+}
+
+.controls > button > i{
+    cursor: url('/assets/icons/Arrow-left.svg'), auto;
 }
 
 

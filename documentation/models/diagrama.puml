@@ -1,0 +1,159 @@
+@startuml "diagrama de clases"
+title Diagrama de Clases - MyMoney
+
+class usuario{
+    - id: int
+    - username: string
+    - password: string
+    - role: string
+    - infoPersonalId: int
+}
+class infoPersonal{
+    - id: int
+    - nombre: string
+    - apellido: string
+    - fechaNacimiento: date
+    - genero: tipoGenero
+    - telefono: string
+    - email: string
+    - direccionId: int
+    - tipoDocumento: tipoDocumento
+    - numeroDocumento: string
+}
+class direccion{
+    - id: int
+    - pais: string
+    - departamento: string
+    - ciudad: string
+    - calle: string
+    - numero: string
+    - referencia: string
+}
+class contactos{
+    - id: int
+    - userId: int
+    - infoPersonalId: int
+    - categoriaId: int
+}
+class categoriasFinanzas{
+    - id: int
+    - nombre: string
+    - descripcion: string
+    - userId: int
+}
+class categoriasContactos{
+    - id: int
+    - nombre: string
+    - descripcion: string
+    - userId: int
+}
+class transaccion{
+    - id: int
+    - monto: float
+    - categoriaId: int
+    - fecha: date
+    - tipo: tipoTransaccion
+    - userId: int
+}
+class gastos{
+    - id: int
+    - transaccionId: int
+    - tipo: tipoGasto
+}
+class deudas{
+    - id: int
+    - transaccionId: int
+    - fechaLimite: date
+    - deudorId: int
+    - tipo: tipoDeuda
+    - estado: estadoDeuda
+}
+class ingresos{
+    - id: int
+    - transaccionId: int
+    - tipo: tipoIngreso
+}
+class salarios{
+    - id: int
+    - fechaLimite: date
+    - empresa: string
+    - estado: string
+    - userId: int
+}
+class pagoSalario{
+    - id: int
+    - salarioId: int
+    - transaccionId: int
+}
+class metas{
+    - id: int
+    - nombre: string
+    - descripcion: string
+    - montoObjetivo: float
+    - fechaInicio: date
+    - fechaFin: date
+    - userId: int
+}
+class aporteMeta{
+    - id: int
+    - transaccionId: int
+    - metaId: int
+}
+
+enum tipoTransaccion{
+    Gasto
+    Ingreso
+    Deuda
+    AporteMeta
+    Salario
+}
+enum tipoGasto{
+    Fijo
+    Variable
+    Diario
+}
+enum tipoDeuda{
+    Propia
+    Ajena
+}
+enum estadoDeuda{
+    Pendiente
+    Pagada
+    Vencida
+}
+enum tipoIngreso{
+    Extra
+    Deuda
+    Otro
+}
+enum tipoGenero{
+    Masculino
+    Femenino
+    Otro
+}
+enum tipoDocumento{
+    CC
+    CE
+    Pasaporte
+    Otro
+}
+
+usuario "1" -- "1" infoPersonal : tiene >
+usuario "1" -- "0..*" contactos : tiene >
+usuario "1" -- "0..*" transaccion : realiza >
+usuario "1" -- "0..*" categoriasFinanzas : crea >
+usuario "1" -- "0..*" categoriasContactos : crea >
+usuario "1" -- "0..*" metas : establece >
+usuario "1" -- "0..*" salarios : tiene >
+infoPersonal "1" -- "1" direccion : vive >
+contactos "1" -- "1" infoPersonal : tiene >
+contactos "1" -- "0..1" categoriasContactos : clasifica >
+categoriasFinanzas "1" -- "0..*" transaccion : clasifica >
+transaccion "1" -- "0..1" gastos : es >
+transaccion "1" -- "0..1" deudas : es >
+transaccion "1" -- "0..1" ingresos : es >
+transaccion "1" -- "0..1" aporteMeta : es >
+metas "1" -- "0..*" aporteMeta : recibe >
+salarios "1" -- "0..*" pagoSalario : genera >
+pagoSalario "1" -- "1" transaccion : es >
+@enduml

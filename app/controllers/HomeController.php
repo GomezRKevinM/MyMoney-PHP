@@ -1,11 +1,16 @@
 <?php
-class HomeController{
+class HomeController {
+    public function index(): void {
+        $title   = 'Home | My Money';
+        $header  = 'Bienvenido';
+        $message = 'Esta es la página de inicio.';
 
-    public function index(){
-        $title = 'Home Page';
-        $header = 'Welcome to the Home Page';
-        $message = 'This is the home page of our MVC application.';
-
+        // Captura el contenido de la vista en un buffer
+        ob_start();
         require_once __DIR__ . '/../views/homeView.php';
+        $content = ob_get_clean();
+
+        // Inyecta el contenido en el layout
+        require_once __DIR__ . '/../views/layouts/main.php';
     }
 }
